@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-midnight: #05050A;
+    --bg-dark: #09090F;
+    --lavender: #A78BFA;
+    --purple: #7C3AED;
+    --blush: #F9A8D4;
+    --rose: #EC4899;
+    --cream: #FFF7ED;
+    --white: #FFFFFF;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #05050A;
+    color: #FFF7ED;
+  }
+
+  body {
+    overflow-x: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #05050A;
+    color: #FFF7ED;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05050A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(167, 139, 250, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(249, 168, 212, 0.45);
+  }
+}
+
+/* Font utility classes */
+.font-serif-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+.font-script {
+  font-family: 'Alex Brush', cursive;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(15, 12, 28, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+}
+
+.glass-panel-subtle {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-pill {
+  background: rgba(9, 9, 15, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+/* Cinematic text glow */
+.glow-text-lavender {
+  text-shadow: 0 0 20px rgba(167, 139, 250, 0.5), 0 0 40px rgba(124, 58, 237, 0.3);
+}
+
+.glow-text-pink {
+  text-shadow: 0 0 20px rgba(249, 168, 212, 0.5), 0 0 40px rgba(236, 72, 153, 0.3);
+}
+
+.glow-text-gold {
+  text-shadow: 0 0 25px rgba(255, 247, 237, 0.6), 0 0 50px rgba(249, 168, 212, 0.35);
+}
+
+/* Animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: translateX(-100%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-25deg);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
