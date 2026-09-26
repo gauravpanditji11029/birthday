@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Happy Birthday, Fatima ♡ | A Cinematic Celebration",
-  description: "An interactive, cinematic digital birthday universe created especially for Fatima.",
+  title: "HAPPY BIRTHDAY ♡ | A Cinematic Celebration",
+  description: "An interactive, cinematic digital birthday universe.",
 };
 
 export default function RootLayout({

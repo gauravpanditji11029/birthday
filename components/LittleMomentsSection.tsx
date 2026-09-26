@@ -5,21 +5,20 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Sparkles, Heart } from "lucide-react";
 
-export function LittleThingsSection() {
+export function LittleMomentsSection() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.25 });
 
   const lines = [
-    { text: "Your smile.", subtitle: "The effortless warmth that brightens any room" },
-    { text: "Your laugh.", subtitle: "A sound that makes everyone around you lighter" },
-    { text: "The random conversations.", subtitle: "The ones that wander everywhere and mean everything" },
-    { text: "The little moments.", subtitle: "Quiet seconds that end up becoming core memories" },
-    { text: "The things that somehow make everything better.", subtitle: "Just by you being you" },
+    { text: "the laughs", subtitle: "Effortless warmth that brightens any room" },
+    { text: "the late nights", subtitle: "Quiet hours filled with thoughts and quiet comfort" },
+    { text: "the random memories", subtitle: "Moments that wandered everywhere and mean everything" },
+    { text: "the tiny things that make a day special", subtitle: "Small, beautiful sparks that make life sweeter" },
   ];
 
   return (
     <section
-      id="little-things"
+      id="little-moments"
       ref={containerRef}
       className="relative w-full min-h-screen py-28 px-6 sm:px-12 flex items-center justify-center bg-gradient-to-b from-[#05050A] via-[#0b0a17] to-[#05050A] overflow-hidden"
     >
@@ -37,8 +36,8 @@ export function LittleThingsSection() {
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden">
               <Image
-                src="/images/fatima/little_things.jpg"
-                alt="Fatima in a cozy, dreamy moment"
+                src="/images/birthday/little_things.jpg"
+                alt="A cozy, dreamy birthday moment"
                 fill
                 sizes="(max-width: 768px) 100vw, 450px"
                 className="object-cover object-center transition-transform duration-700 hover:scale-105"
@@ -76,7 +75,7 @@ export function LittleThingsSection() {
             transition={{ duration: 1, delay: 0.2 }}
             className="font-serif-editorial text-4xl sm:text-5xl md:text-6xl font-light text-white tracking-wide"
           >
-            THE LITTLE THINGS
+            THE LITTLE MOMENTS
           </motion.h3>
 
           <div className="w-20 h-[1.5px] bg-gradient-to-r from-pink-400 to-transparent my-6" />
@@ -108,7 +107,7 @@ export function LittleThingsSection() {
                 className="group flex flex-col pl-4 border-l-2 border-purple-500/20 hover:border-pink-400 transition-colors duration-300"
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-serif-editorial text-xl sm:text-2xl text-white group-hover:text-pink-200 transition-colors">
+                  <span className="font-serif-editorial text-2xl sm:text-3xl text-white group-hover:text-pink-200 transition-colors lowercase">
                     {item.text}
                   </span>
                 </div>

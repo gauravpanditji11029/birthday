@@ -18,7 +18,7 @@ export function FixedNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Web Audio API ambient dream chime arpeggiator
+  // Web Audio API ambient dream chime arpeggiator (Optional, no autoplay)
   const toggleAudio = () => {
     if (isAudioPlaying) {
       if (timerRef.current) {
@@ -40,7 +40,7 @@ export function FixedNav() {
       const ctx = new AudioContextClass();
       audioCtxRef.current = ctx;
 
-      // Gentle pentatonic chime notes (F4, A4, C5, D5, F5, G5, A5, C6)
+      // Gentle harmonic frequencies (F4, A4, C5, D5, F5, G5, A5, C6)
       const frequencies = [349.23, 440.0, 523.25, 587.33, 698.46, 783.99, 880.0, 1046.5];
 
       const playChime = (freq: number) => {
@@ -48,12 +48,11 @@ export function FixedNav() {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
 
-        // Soft sine tone with gentle harmonic
         osc.type = "sine";
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
         gain.gain.setValueAtTime(0.001, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.05, ctx.currentTime + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.045, ctx.currentTime + 0.1);
         gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 3.2);
 
         osc.connect(gain);
@@ -63,7 +62,6 @@ export function FixedNav() {
         osc.stop(ctx.currentTime + 3.5);
       };
 
-      // Play soothing random arpeggios
       let step = 0;
       const runSequence = () => {
         const chordNote = frequencies[step % frequencies.length];
@@ -98,17 +96,17 @@ export function FixedNav() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 px-6 sm:px-12 py-5 transition-all duration-500 ${
           isScrolled
-            ? "bg-[#05050A]/70 backdrop-blur-md border-b border-purple-900/20 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+            ? "bg-[#05050A]/75 backdrop-blur-md border-b border-purple-900/20 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Left Brand */}
+          {/* Left Brand: "HAPPY BIRTHDAY" */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="group flex items-center gap-2 text-left focus:outline-none"
           >
-            <span className="font-serif-editorial text-lg sm:text-xl font-light tracking-[0.18em] uppercase text-purple-200 group-hover:text-pink-300 transition-colors">
+            <span className="font-serif-editorial text-lg sm:text-xl font-light tracking-[0.2em] uppercase text-purple-200 group-hover:text-pink-300 transition-colors">
               Happy Birthday
             </span>
             <span className="text-pink-400 text-sm group-hover:scale-125 transition-transform duration-300">
@@ -116,7 +114,7 @@ export function FixedNav() {
             </span>
           </button>
 
-          {/* Desktop Links */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-10">
             <button
               onClick={() => scrollTo("hero")}
@@ -131,22 +129,16 @@ export function FixedNav() {
               Explode
             </button>
             <button
-              onClick={() => scrollTo("little-things")}
+              onClick={() => scrollTo("little-moments")}
               className="text-[12px] uppercase tracking-[0.24em] font-medium text-white/70 hover:text-white transition-colors duration-200"
             >
-              The Little Things
+              Moments
             </button>
             <button
               onClick={() => scrollTo("memories")}
               className="text-[12px] uppercase tracking-[0.24em] font-medium text-white/70 hover:text-white transition-colors duration-200"
             >
               Memories
-            </button>
-            <button
-              onClick={() => scrollTo("letter")}
-              className="text-[12px] uppercase tracking-[0.24em] font-medium text-white/70 hover:text-white transition-colors duration-200"
-            >
-              Letter
             </button>
             <button
               onClick={() => scrollTo("surprise")}
@@ -156,10 +148,10 @@ export function FixedNav() {
               <span className="text-xs">✦</span>
             </button>
 
-            {/* Audio chime button */}
+            {/* Audio Toggle */}
             <button
               onClick={toggleAudio}
-              aria-label="Toggle Dream Music"
+              aria-label="Toggle Dream Chimes"
               className={`p-2 rounded-full border transition-all duration-300 ${
                 isAudioPlaying
                   ? "border-pink-400/60 bg-pink-500/20 text-pink-200 shadow-[0_0_12px_rgba(249,168,212,0.4)]"
@@ -175,11 +167,11 @@ export function FixedNav() {
             </button>
           </nav>
 
-          {/* Mobile Menu & Audio Buttons */}
+          {/* Mobile Buttons */}
           <div className="flex md:hidden items-center gap-3">
             <button
               onClick={toggleAudio}
-              aria-label="Toggle Dream Music"
+              aria-label="Toggle Dream Chimes"
               className={`p-2 rounded-full border ${
                 isAudioPlaying
                   ? "border-pink-400/60 bg-pink-500/20 text-pink-200"
@@ -203,7 +195,7 @@ export function FixedNav() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-30 bg-[#05050A]/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden">
           <button
@@ -219,22 +211,16 @@ export function FixedNav() {
             Explode
           </button>
           <button
-            onClick={() => scrollTo("little-things")}
+            onClick={() => scrollTo("little-moments")}
             className="font-serif-editorial text-2xl tracking-[0.2em] uppercase text-white/90 hover:text-pink-300"
           >
-            The Little Things
+            Moments
           </button>
           <button
             onClick={() => scrollTo("memories")}
             className="font-serif-editorial text-2xl tracking-[0.2em] uppercase text-white/90 hover:text-pink-300"
           >
             Memories
-          </button>
-          <button
-            onClick={() => scrollTo("letter")}
-            className="font-serif-editorial text-2xl tracking-[0.2em] uppercase text-white/90 hover:text-pink-300"
-          >
-            Letter
           </button>
           <button
             onClick={() => scrollTo("surprise")}

@@ -14,18 +14,18 @@ export function ExplodedScene() {
   });
 
   // Phases:
-  // 0.0 - 0.25: Intact original composition
-  // 0.25 - 0.55: Explode outward
+  // 0.0 - 0.25: Intact original composition (cake + candle + flowers + small gifts)
+  // 0.25 - 0.55: Explode outward in 2D directions
   // 0.55 - 0.75: Float in space
-  // 0.75 - 1.0: Reassemble into new royal birthday crest
+  // 0.75 - 1.0: Reassemble into new royal celebratory crest
 
-  // Piece 1: Top-Left Polaroid
+  // Piece 1: Top-Left Polaroid Photo
   const piece1X = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, -220, -180, 0]);
   const piece1Y = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, -160, -140, 0]);
   const piece1Rotate = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, -18, -12, 0]);
   const piece1Scale = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [1, 1.25, 1.1, 0.95]);
 
-  // Piece 2: Top-Right Ribbon & Stars
+  // Piece 2: Top-Right Starlight Compass & Ribbons
   const piece2X = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, 240, 190, 0]);
   const piece2Y = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, -140, -110, 0]);
   const piece2Rotate = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, 24, 15, 0]);
@@ -36,7 +36,7 @@ export function ExplodedScene() {
   const piece3Y = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, 180, 150, 0]);
   const piece3Rotate = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, 15, 10, 0]);
 
-  // Piece 4: Bottom-Right Floral Cluster
+  // Piece 4: Bottom-Right Floral Cluster & Gift Box
   const piece4X = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, 220, 170, 0]);
   const piece4Y = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, 160, 130, 0]);
   const piece4Rotate = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [0, -22, -15, 0]);
@@ -52,7 +52,6 @@ export function ExplodedScene() {
   const petal2X = useTransform(scrollYProgress, [0, 0.5, 1], [0, 310, 0]);
   const petal2Y = useTransform(scrollYProgress, [0, 0.5, 1], [0, 240, 0]);
 
-  // Explode stage label
   const phaseLabel = useTransform(
     scrollYProgress,
     [0, 0.3, 0.65, 0.9],
@@ -65,14 +64,13 @@ export function ExplodedScene() {
       ref={targetRef}
       className="relative w-full h-[280vh] bg-[#05050A]"
     >
-      {/* Sticky Fullscreen Stage */}
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4">
         {/* Ambient background glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(236,72,153,0.12)_0%,rgba(167,139,250,0.08)_50%,transparent_75%)] blur-3xl" />
         </div>
 
-        {/* Section title & interactive stage badge */}
+        {/* Section title & stage indicator */}
         <div className="absolute top-20 sm:top-24 flex flex-col items-center text-center z-30 pointer-events-none">
           <span className="text-[11px] uppercase tracking-[0.35em] text-pink-300 font-medium">
             Scroll-Driven Dimensional Physics
@@ -81,10 +79,9 @@ export function ExplodedScene() {
             Exploded Birthday Universe
           </h3>
           <p className="text-white/50 text-xs sm:text-sm mt-1 max-w-md">
-            Scroll down to watch every keepsake element fly outward, then assemble into a new birthday crest.
+            Scroll down to watch every keepsake element fly outward, then assemble into a new celebration crest.
           </p>
 
-          {/* Interactive Phase Indicator */}
           <div className="mt-3 px-4 py-1 rounded-full border border-purple-400/30 bg-purple-950/40 backdrop-blur-md text-[11px] text-purple-200 tracking-wider flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-pink-400 animate-ping" />
             <motion.span>{phaseLabel}</motion.span>
@@ -103,7 +100,7 @@ export function ExplodedScene() {
             <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full border-2 border-pink-300/30 bg-gradient-to-tr from-purple-950/60 to-pink-950/40 p-4 shadow-[0_0_50px_rgba(249,168,212,0.25)] flex flex-col items-center justify-center text-center">
               <Sparkles className="w-8 h-8 text-pink-300 mb-2 animate-twinkle" />
               <span className="font-serif-editorial text-2xl text-white font-light">
-                Fatima&apos;s Keepsake
+                Birthday Keepsake
               </span>
               <span className="font-handwriting text-xl text-pink-200 mt-1">
                 A bouquet of sweet moments
@@ -133,7 +130,7 @@ export function ExplodedScene() {
             <div className="p-2 pb-5 bg-white/95 rounded-lg shadow-2xl border border-pink-200/50 w-36 sm:w-44 text-black">
               <div className="relative w-full aspect-square rounded overflow-hidden">
                 <Image
-                  src="/images/fatima/memory_flowers.jpg"
+                  src="/images/birthday/memory_flowers.jpg"
                   alt="Snapshot"
                   fill
                   sizes="180px"
@@ -241,7 +238,6 @@ export function ExplodedScene() {
             className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none"
           >
             <div className="relative w-80 sm:w-96 p-8 rounded-3xl border-2 border-pink-400/50 bg-[#090916]/95 backdrop-blur-2xl shadow-[0_0_80px_rgba(249,168,212,0.4)] text-center flex flex-col items-center">
-              {/* Crown / Star Top Badge */}
               <div className="p-3 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 text-white shadow-lg mb-3">
                 <Sparkles className="w-6 h-6 animate-spin" style={{ animationDuration: "12s" }} />
               </div>
@@ -257,7 +253,7 @@ export function ExplodedScene() {
               <div className="w-20 h-[1.5px] bg-gradient-to-r from-transparent via-pink-400 to-transparent my-3" />
 
               <p className="font-handwriting text-2xl text-purple-200">
-                Fatima ♡
+                A Year of Light ♡
               </p>
 
               <p className="text-white/60 text-xs mt-2 max-w-xs font-light">

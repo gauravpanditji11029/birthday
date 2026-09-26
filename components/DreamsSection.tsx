@@ -7,14 +7,19 @@ import { Moon, Star, Sparkles, Heart } from "lucide-react";
 export function DreamsSection() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.2 });
-  const [activeWish, setActiveWish] = useState<number | null>(null);
+  const [activeWord, setActiveWord] = useState<string | null>(null);
 
-  const wishes = [
-    { title: "More laughter", desc: "The kind that makes your eyes crinkle and makes your stomach ache with happiness." },
-    { title: "More adventures", desc: "Journeys to places both new and familiar that fill your soul with wonder." },
-    { title: "More unforgettable moments", desc: "Times so warm and golden that you'll tuck them safely inside your heart." },
-    { title: "More reasons to smile", desc: "Unexpected kindness, morning sunshine, and effortless ease every single day." },
-    { title: "More dreams coming true", desc: "Every quiet wish you ever held in secret unfolding in perfect grace." },
+  // Floating celestial words requested in prompt:
+  // “joy”, “adventure”, “love”, “success”, “laughter”, “dreams”, “memories”, “magic”
+  const words = [
+    { word: "joy", subtitle: "Moments of pure light and ease", xOffset: -12, delay: 0.2 },
+    { word: "adventure", subtitle: "Journeys that awaken wonder", xOffset: 8, delay: 0.35 },
+    { word: "love", subtitle: "The warmth that always surrounds you", xOffset: -6, delay: 0.5 },
+    { word: "success", subtitle: "Every dream quietly unfolding", xOffset: 14, delay: 0.65 },
+    { word: "laughter", subtitle: "The sound that makes life brighter", xOffset: -10, delay: 0.8 },
+    { word: "dreams", subtitle: "Wishes waiting among the stars", xOffset: 6, delay: 0.95 },
+    { word: "memories", subtitle: "Treasures carried in the heart", xOffset: -8, delay: 1.1 },
+    { word: "magic", subtitle: "The extraordinary found in every day", xOffset: 10, delay: 1.25 },
   ];
 
   return (
@@ -35,7 +40,7 @@ export function DreamsSection() {
         </div>
       </motion.div>
 
-      {/* Atmospheric glowing cloud clouds / starlight haze */}
+      {/* Atmospheric starlight haze */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.12)_0%,rgba(249,168,212,0.08)_40%,transparent_75%)] blur-3xl pointer-events-none" />
 
       {/* Header */}
@@ -47,79 +52,65 @@ export function DreamsSection() {
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-pink-400/30 bg-pink-500/10 text-pink-200 text-xs uppercase tracking-[0.25em] mb-4"
         >
           <Star className="w-3.5 h-3.5 text-pink-300" />
-          <span>Chapter 04 • Celestial Horizon</span>
+          <span>Chapter 03 • Celestial Horizon</span>
         </motion.div>
 
+        {/* Large Text: “DREAM BIG” */}
         <motion.h3
           initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 1.2, delay: 0.2 }}
-          className="font-serif-editorial text-5xl sm:text-7xl md:text-8xl font-light text-white tracking-[0.08em] uppercase glow-text-gold"
+          className="font-serif-editorial text-5xl sm:text-7xl md:text-8xl font-light text-white tracking-[0.14em] uppercase glow-text-gold"
         >
           DREAM BIG
         </motion.h3>
 
+        {/* Subtitle: “Because beautiful things are still ahead.” */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
           className="font-serif-editorial italic text-xl sm:text-2xl text-purple-200/90 font-light mt-4"
         >
-          Because you deserve beautiful things.
+          Because beautiful things are still ahead.
         </motion.p>
       </div>
 
-      {/* Floating Constellation of Wishes */}
-      <div className="relative w-full max-w-5xl z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {wishes.map((wish, index) => (
+      {/* Floating Constellation of Glowing Words */}
+      <div className="relative w-full max-w-5xl z-10 grid grid-cols-2 sm:grid-cols-4 gap-5">
+        {words.map((item, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 30, scale: 0.92 }}
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={
               isInView
                 ? {
                     opacity: 1,
-                    y: 0,
+                    y: [0, (index % 2 === 0 ? -6 : 6), 0],
                     scale: 1,
                   }
                 : {}
             }
             transition={{
-              duration: 0.9,
-              delay: 0.4 + index * 0.14,
-              ease: [0.16, 1, 0.3, 1],
+              opacity: { duration: 0.9, delay: item.delay },
+              scale: { duration: 0.9, delay: item.delay },
+              y: { duration: 4 + (index % 3), repeat: Infinity, ease: "easeInOut", delay: item.delay },
             }}
-            whileHover={{ y: -6, scale: 1.02 }}
-            onClick={() => setActiveWish(activeWish === index ? null : index)}
-            className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 glass-panel border ${
-              activeWish === index
-                ? "border-pink-400 bg-pink-950/30 shadow-[0_0_30px_rgba(249,168,212,0.3)]"
-                : "border-purple-500/20 hover:border-pink-400/50"
+            whileHover={{ scale: 1.08, y: -8 }}
+            onClick={() => setActiveWord(activeWord === item.word ? null : item.word)}
+            className={`p-5 rounded-2xl cursor-pointer transition-all duration-300 glass-panel border flex flex-col items-center text-center ${
+              activeWord === item.word
+                ? "border-pink-400 bg-pink-950/40 shadow-[0_0_30px_rgba(249,168,212,0.4)]"
+                : "border-purple-500/20 hover:border-pink-400/50 hover:shadow-[0_0_20px_rgba(167,139,250,0.25)]"
             }`}
           >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs uppercase tracking-[0.25em] text-pink-300 font-medium">
-                Wish 0{index + 1}
-              </span>
-              <Heart
-                className={`w-4 h-4 transition-colors ${
-                  activeWish === index ? "text-pink-400 fill-pink-400" : "text-white/30"
-                }`}
-              />
-            </div>
-
-            <h4 className="font-serif-editorial text-2xl text-white font-normal mb-2">
-              {wish.title}
-            </h4>
-
-            <p className="text-white/70 text-xs sm:text-sm font-light leading-relaxed">
-              {wish.desc}
-            </p>
-
-            <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-purple-200/60">
-              <span>Dedicated to Fatima</span>
-              <Sparkles className="w-3 h-3 text-pink-300" />
-            </div>
+            <Sparkles className="w-4 h-4 text-pink-300 mb-2 animate-twinkle" />
+            <span className="font-serif-editorial text-2xl sm:text-3xl text-white font-light tracking-wider lowercase">
+              {item.word}
+            </span>
+            <span className="text-[11px] text-white/50 font-light mt-1 max-w-[140px] leading-tight">
+              {item.subtitle}
+            </span>
           </motion.div>
         ))}
       </div>

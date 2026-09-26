@@ -15,7 +15,7 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
   const [wishMade, setWishMade] = useState(false);
   const [wishCount, setWishCount] = useState(0);
 
-  // Custom high-end celebration particle burst (petals, glowing stars, floating hearts, stardust)
+  // Custom celebration particle engine (fluttering petals, stars, hearts, stardust motes)
   const triggerCelebration = () => {
     setWishMade(true);
     setWishCount((prev) => prev + 1);
@@ -46,11 +46,11 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
       "#EC4899", // soft rose
       "#A78BFA", // soft lavender
       "#C084FC", // dreamy violet
-      "#FFF7ED", // warm cream / gold
+      "#FFF7ED", // warm cream
     ];
 
     const particles: Particle[] = [];
-    const count = 90;
+    const count = 95;
     const originX = canvas.width / 2;
     const originY = canvas.height * 0.7;
 
@@ -83,7 +83,7 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.09; // gravity
+        p.vy += 0.09; // gentle gravity
         p.vx *= 0.985; // drag
         p.rotation += p.vRot;
         p.alpha -= 0.005;
@@ -99,14 +99,12 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
         ctx.shadowBlur = 10;
 
         if (p.type === "petal") {
-          // Petal
           ctx.beginPath();
           ctx.moveTo(0, -p.size);
           ctx.quadraticCurveTo(p.size * 0.8, 0, 0, p.size);
           ctx.quadraticCurveTo(-p.size * 0.8, 0, 0, -p.size);
           ctx.fill();
         } else if (p.type === "star") {
-          // 4-point star
           ctx.beginPath();
           ctx.moveTo(0, -p.size);
           ctx.lineTo(p.size * 0.3, -p.size * 0.3);
@@ -119,7 +117,6 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
           ctx.closePath();
           ctx.fill();
         } else if (p.type === "heart") {
-          // Small heart
           const s = p.size * 0.5;
           ctx.beginPath();
           ctx.moveTo(0, s * 0.3);
@@ -127,7 +124,6 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
           ctx.bezierCurveTo(s * 2, s * 0.5, s, -s, 0, s * 0.3);
           ctx.fill();
         } else {
-          // Dust mote
           ctx.beginPath();
           ctx.arc(0, 0, p.size * 0.4, 0, Math.PI * 2);
           ctx.fill();
@@ -165,7 +161,6 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
       ref={containerRef}
       className="relative w-full min-h-screen py-28 px-6 sm:px-12 flex flex-col items-center justify-center bg-gradient-to-b from-[#05050A] via-[#120e29] to-[#05050A] overflow-hidden select-none"
     >
-      {/* Canvas for celebration particle burst */}
       <canvas
         ref={canvasRef}
         className="pointer-events-none fixed inset-0 z-50 w-full h-full"
@@ -174,60 +169,48 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
       {/* Atmospheric lighting pool */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(249,168,212,0.18)_0%,rgba(167,139,250,0.14)_40%,transparent_75%)] blur-3xl pointer-events-none" />
 
-      {/* Floating ambient fairy lanterns */}
+      {/* Floating fairy light lanterns */}
       <div className="absolute top-12 left-10 w-2 h-2 rounded-full bg-amber-300 shadow-[0_0_20px_#fde68a] animate-ping" />
       <div className="absolute top-24 right-14 w-2 h-2 rounded-full bg-pink-300 shadow-[0_0_20px_#f472b6] animate-ping" style={{ animationDelay: "1s" }} />
 
       {/* Main Grand Announcement */}
-      <div className="text-center max-w-4xl mx-auto mb-12 relative z-20">
+      <div className="text-center max-w-5xl mx-auto mb-12 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-400/40 bg-pink-500/10 text-pink-200 text-xs uppercase tracking-[0.3em] mb-4"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-400/40 bg-pink-500/10 text-pink-200 text-xs uppercase tracking-[0.3em] mb-6"
         >
           <Sparkles className="w-4 h-4 text-pink-300 animate-twinkle" />
-          <span>The Grand Finale</span>
+          <span>The Grand Celebration</span>
         </motion.div>
 
-        {/* "HAPPY BIRTHDAY" */}
+        {/* Huge Enormous “HAPPY BIRTHDAY” */}
         <motion.h2
           initial={{ opacity: 0, y: 25, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.2, delay: 0.2 }}
-          className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-[0.18em] uppercase glow-text-gold"
+          className="font-serif-editorial text-5xl sm:text-7xl md:text-9xl font-light text-white tracking-[0.16em] uppercase glow-text-gold leading-none"
         >
           HAPPY BIRTHDAY
         </motion.h2>
-
-        {/* Huge "FATIMA" */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.4, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="my-2"
-        >
-          <span className="font-serif-editorial text-7xl sm:text-9xl md:text-[11rem] font-normal tracking-[0.16em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#FFF7ED] via-[#F9A8D4] to-[#A78BFA] drop-shadow-[0_0_35px_rgba(249,168,212,0.6)]">
-            FATIMA
-          </span>
-        </motion.div>
 
         {/* Heart Glyph */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-pink-400 text-3xl sm:text-4xl my-2"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-pink-400 text-3xl sm:text-4xl my-3"
         >
           ♡
         </motion.div>
 
-        {/* Wish subtitle */}
+        {/* Prompt subtitle: “May this year be even more beautiful than the last.” */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 0.9, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="font-serif-editorial italic text-xl sm:text-3xl text-purple-200/90 font-light mt-3 max-w-xl mx-auto"
+          transition={{ duration: 1, delay: 0.8 }}
+          className="font-serif-editorial italic text-xl sm:text-3xl text-purple-200/90 font-light mt-2 max-w-xl mx-auto"
         >
           &ldquo;May this year be even more beautiful than the last.&rdquo;
         </motion.p>
@@ -242,24 +225,23 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
       >
         <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
           <Image
-            src="/images/fatima/celebration.jpg"
-            alt="Fatima celebrating her birthday beside cake and candles"
+            src="/images/birthday/celebration.jpg"
+            alt="Celebrating with birthday cake, candles, and starlight"
             fill
             sizes="(max-width: 768px) 100vw, 600px"
             className="object-cover object-center transition-transform duration-1000 hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#05050A]/70 via-transparent to-transparent pointer-events-none" />
 
-          {/* Candle glow pulse */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-black/60 backdrop-blur-md border border-pink-300/40 text-center whitespace-nowrap shadow-lg">
             <span className="font-serif-editorial text-sm sm:text-base text-pink-200 tracking-wider">
-              ✦ Surrounded by light, love, and stardust ✦
+              ✦ Surrounded by light, joy, and stardust ✦
             </span>
           </div>
         </div>
       </motion.div>
 
-      {/* Final Celebration Interactive Button */}
+      {/* Button: “One More Wish ♡” */}
       <div className="relative z-30 flex flex-col items-center gap-6">
         <motion.button
           whileHover={{ scale: 1.08 }}
@@ -274,7 +256,11 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
           <Heart className="w-5 h-5 text-white fill-white group-hover:scale-125 transition-transform" />
         </motion.button>
 
-        {/* Revealed Heartfelt Dedication after wish */}
+        {/* Revealed Dedication:
+            “Keep smiling.
+            Keep dreaming.
+            Keep being you. ♡”
+            Finally: “HAPPY BIRTHDAY” */}
         <AnimatePresence>
           {wishMade && (
             <motion.div
@@ -282,18 +268,26 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 1 }}
-              className="mt-6 text-center max-w-lg p-6 rounded-2xl glass-panel border border-pink-300/50 shadow-2xl"
+              className="mt-6 text-center max-w-lg p-8 rounded-3xl glass-panel border border-pink-300/50 shadow-2xl"
             >
-              <p className="font-serif-editorial text-2xl sm:text-3xl text-white font-light">
-                Happy Birthday, Fatima.
-              </p>
-              <p className="font-handwriting text-2xl sm:text-3xl text-pink-300 mt-2 font-semibold">
-                Keep smiling. Keep dreaming. Keep being you. ♡
-              </p>
-              <div className="mt-4 flex items-center justify-center gap-3">
+              <div className="font-serif-editorial text-2xl sm:text-3xl text-white font-light space-y-1">
+                <p>Keep smiling.</p>
+                <p>Keep dreaming.</p>
+                <p className="font-handwriting text-3xl sm:text-4xl text-pink-300 font-semibold pt-1">
+                  Keep being you. ♡
+                </p>
+              </div>
+
+              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-pink-400 to-transparent my-4 mx-auto" />
+
+              <h3 className="font-serif-editorial text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-white font-normal uppercase tracking-widest glow-text-gold">
+                HAPPY BIRTHDAY
+              </h3>
+
+              <div className="mt-5 flex items-center justify-center gap-3">
                 <button
                   onClick={triggerCelebration}
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-purple-200 hover:text-white px-3 py-1.5 rounded-full border border-purple-400/30 bg-purple-950/40"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-purple-200 hover:text-white px-4 py-2 rounded-full border border-purple-400/30 bg-purple-950/40 hover:bg-purple-900/50 transition-colors"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Replay Wish ({wishCount})</span>
@@ -304,9 +298,9 @@ export function FinalCelebration({ isOpen }: FinalCelebrationProps) {
         </AnimatePresence>
       </div>
 
-      {/* Footer Signature */}
+      {/* Footer */}
       <footer className="mt-28 text-center text-xs text-white/40 tracking-[0.25em] uppercase font-light">
-        <p>Crafted exclusively for Fatima with eternal love & admiration</p>
+        <p>A magical digital universe created for your birthday</p>
         <p className="mt-1 text-[10px] text-pink-300/50 font-serif-editorial lowercase italic tracking-wider">
           may every day feel like your favorite story
         </p>

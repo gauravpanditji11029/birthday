@@ -75,7 +75,7 @@ export function GooeyRevealSection() {
         </h3>
         <p className="text-white/60 text-xs sm:text-sm mt-3 font-light">
           {isTouchDevice
-            ? "Touch and drag your finger across the canvas to illuminate Fatima's secret birthday dream."
+            ? "Touch and drag your finger across the canvas to illuminate the secret birthday dream."
             : "Hover and glide your cursor over the canvas to open a magical starlight aperture."}
         </p>
       </div>
@@ -94,7 +94,6 @@ export function GooeyRevealSection() {
             LAYER 1: NORMAL VIEW (Dreamy editorial cosmos & typography)
             ======================================================== */}
         <div className="absolute inset-0 bg-gradient-to-tr from-[#090914] via-[#0e0c1f] to-[#090914] flex flex-col items-center justify-center p-8 text-center">
-          {/* Subtle geometric astral ring */}
           <div className="absolute w-[360px] h-[360px] rounded-full border border-purple-400/15 animate-spin" style={{ animationDuration: "50s" }} />
           <div className="absolute w-[280px] h-[280px] rounded-full border border-pink-400/10 animate-spin" style={{ animationDuration: "35s", animationDirection: "reverse" }} />
 
@@ -124,22 +123,20 @@ export function GooeyRevealSection() {
           }}
           className="absolute inset-0 z-20 pointer-events-none bg-[#05050A]"
         >
-          {/* Secret artwork of Fatima holding starlight */}
           <Image
-            src="/images/fatima/secret_portal.jpg"
-            alt="Fatima making a wish with glowing starlight"
+            src="/images/birthday/secret_portal.jpg"
+            alt="Making a wish with glowing starlight"
             fill
             sizes="(max-width: 768px) 100vw, 900px"
             className="object-cover object-center filter saturate-125 brightness-110"
           />
 
-          {/* Vignette & secret birthday glow */}
           <div className="absolute inset-0 bg-gradient-to-t from-purple-950/70 via-transparent to-pink-950/40" />
 
           {/* Hidden heartfelt badge inside the portal */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full bg-black/60 backdrop-blur-xl border border-pink-400/50 text-center whitespace-nowrap shadow-[0_0_20px_rgba(249,168,212,0.5)]">
             <p className="font-serif-editorial text-sm sm:text-base text-pink-200">
-              ✦ Fatima • Holding all the wishes of the world ✦
+              ✦ Holding all the quiet wishes of the world ✦
             </p>
           </div>
         </div>

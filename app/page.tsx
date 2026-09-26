@@ -9,10 +9,10 @@ import { FixedNav } from "@/components/FixedNav";
 import { CinematicIntro } from "@/components/CinematicIntro";
 import { HeroSection } from "@/components/HeroSection";
 import { ExplodedScene } from "@/components/ExplodedScene";
-import { LittleThingsSection } from "@/components/LittleThingsSection";
+import { LittleMomentsSection } from "@/components/LittleMomentsSection";
 import { GooeyRevealSection } from "@/components/GooeyRevealSection";
-import { MemorySection } from "@/components/MemorySection";
-import { LetterSection } from "@/components/LetterSection";
+import { MemoryGallerySection } from "@/components/MemoryGallerySection";
+import { HeartfeltMessageSection } from "@/components/HeartfeltMessageSection";
 import { DreamsSection } from "@/components/DreamsSection";
 import { SurpriseSection } from "@/components/SurpriseSection";
 import { FinalCelebration } from "@/components/FinalCelebration";
@@ -31,34 +31,34 @@ export default function Home() {
       {/* Floating Header Navigation */}
       <FixedNav />
 
-      {/* SCENE 01 — Cinematic Intro */}
+      {/* 01 — Cinematic Intro */}
       <CinematicIntro />
 
-      {/* SCENE 02 — Fatima Hero Section */}
+      {/* 02 & 03 — Happy Birthday Hero & Magical World */}
       <HeroSection />
 
-      {/* SCENE 03 & 04 — The World Opens & Exploded View Interaction */}
+      {/* 04 — Exploded Birthday Scene */}
       <ExplodedScene />
 
-      {/* SCENE 05 — The Little Things */}
-      <LittleThingsSection />
+      {/* 05 — The Little Moments */}
+      <LittleMomentsSection />
 
-      {/* SCENE 06 — Gooey Cursor Reveal Portal */}
+      {/* 06 — Interactive Gooey Reveal */}
       <GooeyRevealSection />
 
-      {/* SCENE 07 — Memory Collage */}
-      <MemorySection />
+      {/* 07 — Memory Gallery / Scrapbook */}
+      <MemoryGallerySection />
 
-      {/* SCENE 08 — Heartfelt Letter */}
-      <LetterSection />
+      {/* 08 — Heartfelt Message */}
+      <HeartfeltMessageSection />
 
-      {/* SCENE 09 — Dreams & Wishes */}
+      {/* 09 — Dream Big */}
       <DreamsSection />
 
-      {/* SCENE 10 — Birthday Surprise */}
+      {/* 10 — Surprise Sequence */}
       <SurpriseSection onOpenSurprise={() => setIsSurpriseOpen(true)} />
 
-      {/* SCENE 11 & 12 — Final Birthday Reveal & Celebration */}
+      {/* 11, 12, 13 — Final Celebration & One More Wish */}
       <FinalCelebration isOpen={isSurpriseOpen} />
     </main>
   );
